@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/tomfidos/projects/issues"
   },
-  "homepage": "https://github.com/tomfidos/projects#readme"
+  "homepage": "https://github.com/tomfidos/projects#readme",
+  "dependencies": {
+    "typescript": "^3.9.7"
+  }
 }
