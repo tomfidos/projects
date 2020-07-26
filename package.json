@@ -1,0 +1,25 @@
+{
+  "name": "privateprojects",
+  "version": "1.0.0",
+  "description": "Simple apps with specific utilities as my exemplary portfolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tomfidos/projects.git"
+  },
+  "keywords": [
+    "bookmaking",
+    "btc addresses",
+    "calculator",
+    "timer"
+  ],
+  "author": "Tomasz Fidos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tomfidos/projects/issues"
+  },
+  "homepage": "https://github.com/tomfidos/projects#readme"
+}
