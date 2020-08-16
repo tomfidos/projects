@@ -6,7 +6,7 @@ async function getData(asset, exchange, interval, fromDate, toDate) {
     const assetDetails = await getAssetsDetails(asset);
     const exchangeAssets = getExchangeAssets(assetDetails, exchange);
     const exchangeAssetsOhlc = await getExchangeAssetsOhlc(exchangeAssets, exchange, interval, fromDate, toDate);
-    printExchangeAssetsOhlc(exchangeAssetsDataOhlc, fromDate, toDate, asset, exchange, interval);
+    printExchangeAssetsOhlc(exchangeAssetsOhlc, fromDate, toDate, asset, exchange, interval);
 }
 
 async function getAssetsDetails(asset) {
@@ -15,7 +15,7 @@ async function getAssetsDetails(asset) {
 }
 
 function getExchangeAssets(assetDetails, exchange) {
-    return assetsDetails.result.markets.base.filter(x => {
+    return assetDetails.result.markets.base.filter(x => {
         if (x.exchange === exchange && x.active) {
             return x;
         }
@@ -29,10 +29,11 @@ async function getExchangeAssetsOhlc(exchangeAssets, exchange, interval, fromDat
         return content.result[interval]
             .filter(y => {
                 const timestamp = moment.utc((y[0].toString() + '000') * 1);
-                return !timestamp.isBefore(fromDate) && timestamp.isBefore(toDate)
+                return !timestamp.isBefore(fromDate) && !timestamp.isAfter(toDate)
             })
             .map(z => {
                 return {
+                    pair: x.pair,
                     closeTime: moment.utc((z[0].toString() + '000') * 1).format('YYYY-MM-DDTHH:mm:ss'),
 		            openPrice: z[1],
 		            highPrice: z[2],
@@ -46,10 +47,11 @@ async function getExchangeAssetsOhlc(exchangeAssets, exchange, interval, fromDat
 
 async function printExchangeAssetsOhlc(exchangeAssetsOhlc, fromDate, toDate, asset, exchange, interval) {
     const pathName =
-	'out/' + fromDate.utc.format('YYYY-MM-DDTHH:mm:ss') + toDate.utc.format('YYYY-MM-DDTHH:mm:ss') + '_' +
+	'out/' + fromDate.format('YYYY-MM-DDTHH:mm:ss') + '_' + toDate.format('YYYY-MM-DDTHH:mm:ss') + '_' +
 	asset + '_' + exchange + '_' + interval + '.csv';
     fs.writeFileSync(
-        pathName, 
+        pathName,
+        'pair' + ',' +
         'closeDateTime' + ',' +
 	    'openPrice' + ',' +
 	    'highPrice' + ',' +
@@ -63,6 +65,7 @@ async function printExchangeAssetsOhlc(exchangeAssetsOhlc, fromDate, toDate, ass
             const result = await x;
             fs.appendFileSync(
                 pathName,
+                result.pair + ',' +
                 result.closeTime + ',' +
 		        result.openPrice + ',' +
 		        result.highPrice + ',' +
@@ -73,3 +76,5 @@ async function printExchangeAssetsOhlc(exchangeAssetsOhlc, fromDate, toDate, ass
         });
     }
 }
+
+exports.getData = getData;
