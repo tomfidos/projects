@@ -23,6 +23,10 @@
   },
   "homepage": "https://github.com/tomfidos/projects#readme",
   "dependencies": {
+    "commander": "^6.0.0",
+    "fs": "0.0.1-security",
+    "moment": "^2.27.0",
+    "node-fetch": "^2.6.0",
     "typescript": "^3.9.7"
   }
 }
