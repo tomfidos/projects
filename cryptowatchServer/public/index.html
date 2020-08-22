@@ -8,35 +8,32 @@
                 <h3>Cryptowatch api</h3>
             </div>
         </header>
-        <div>
+        <form action='/results'>
             <h4>Get OHLC and volume data</h4>
-            <select required>
+            <select name='asset' required>
                 <option disable selected value>Select an asset</option>
                 <option value='btc'>Bitcoin</option>
                 <option value='eth'>Ethereum</option>
                 <option value='ltc'>Litecoin</option>
             </select>
-            <select required>
+            <select name='exchange' required>
                 <option disable selected value>Select an exchange</option>
                 <option value='kraken'>Kraken</option>
                 <option value='binance'>Binance</option>
                 <option value='bitstamp'>Bitstamp</option>
             </select>
-            <select required>
+            <select name='interval' required>
                 <option disable selected value>Select an interval</option>
                 <option value='60'>1 minute</option>
                 <option value='3600'>1 hour</option>
                 <option value='86400'>1 day</option>
             </select>
-            <select required>
-                <p>Select a starting date</p>
-                <input placeholder='YYYY-MM-DDTHH:mm:ssZ' required/>
-            </select>
-            <select required>
-                <p>Select an ending date</p>
-                <input placeholder='YYYY-MM-DDTHH:mm:ssZ' required/>
-            </select>
-        </div>
+            <p>Select a starting date</p>
+            <input name='start' placeholder='YYYY-MM-DDTHH:mm:ssZ' required/>
+            <p>Select an ending date</p>
+            <input name='end' placeholder='YYYY-MM-DDTHH:mm:ssZ' required/>
+            <input type='submit' value='submit'/>
+        </form>
         <footer>
             <div>Tomasz Fidos:</div>
             <a href='mailto: fidostomasz@gmail.com'>fidostomasz@gmail.com</a>
