@@ -1,6 +1,6 @@
 const commander = require('commander');
 const moment = require('moment');
-const cryptowatchDataScript = require('./getCryptoWatchData');
+const cryptowatchDataScript = require('./getCryptowatchData');
 
 commander
     .option('-a, --asset <asset>', 'Cryptocurrency to get data for')
