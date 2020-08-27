@@ -78,3 +78,4 @@ async function printExchangeAssetsOhlc(exchangeAssetsOhlc, fromDate, toDate, ass
 }
 
 exports.getData = getData;
+exports.getExchangeAssets = getExchangeAssets;
